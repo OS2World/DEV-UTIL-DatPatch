@@ -1,0 +1,44 @@
+
+                                DATPATCH.C
+
+         DATPATCH is a quick and dirty utility I wrote to patch the 
+         current date-time into an executable module.  
+         
+         The company I work for uses SNA LU 0 for file transfer.  
+         When we send maintenance code, the date-time stamp on the 
+         .EXE file is changed during transmission and the file size 
+         is rounded up to a 256-byte multiple.  This has caused 
+         problems in determining which module was actually in use at 
+         the site.  So I devised a quick method of applying the date-
+         time to a string imbedded in the .EXE module.  I included a 
+         string constant, then wrote a small program to locate that 
+         string and replace it with the current system date and time.
+
+         In order to use the utility, perform the following steps:
+
+            1) Include the following string in your program:
+                
+                   char str[] = "COMPILED ON MM/DD/YY - HH:MM";
+
+
+
+            2) Add the following command after the compile and link:
+
+                   DATPATCH program.exe
+
+               where "program.exe" is the .EXE to be modified.
+
+
+
+         This implementation is not the most creative or efficient 
+         but it works.  It is written in ANSI C, and should be 
+         portable to most C environments.  The version included in 
+         this package is already compiled using the MAKEIT.BAT and is 
+         linked as a family-mode program.
+
+         Howard K. Warren
+         Scholarship Consulting of Arkansas
+         P.O. Box 488
+         Little Rock, AR  72203
+
+         January 11, 1991
